@@ -5,6 +5,7 @@
     <li>
       <%= recipe.name %>
       <%= link_to '[show]', recipe_path(recipe)%>
+      <%= link_to '[edit]', edit_recipe_path(recipe)%>
     </li>
   <% end%>
 </ul>
