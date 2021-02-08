@@ -4,8 +4,9 @@
   <% @recipes.each do |recipe| %>
     <li>
       <%= recipe.name %>
-      <%= link_to '[show]', recipe_path(recipe)%>
-      <%= link_to '[edit]', edit_recipe_path(recipe)%>
+      <%= link_to '[Show]', recipe_path(recipe)%>
+      <%= link_to '[Edit]', edit_recipe_path(recipe)%>
+      <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'} %>
     </li>
   <% end%>
 </ul>
