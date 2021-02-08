@@ -1,2 +1,15 @@
 <h2>How to make <%= @recipe.name %></h2>
-  <h3>Category: <%= @recipe.category%></h3>
+  <h3>Category: <%= @recipe.category %></h3>
+  <% if @recipe.ingredients.any? %>
+    <h3>Ingredients:</h3>
+      <ul>
+        <% @recipe.ingredients.each do |ingredient| %>
+          <li><p><%= ingredient.name %> : <%= ingredient.measurement_qty %> <%= ingredient.measurement_unit %> </p></li>
+        <% end%>
+      </ul>
+      <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
+  <% else %>
+   <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
+  <% end%>
+
+  <%= link_to "Home", recipes_path %>

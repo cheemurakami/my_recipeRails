@@ -1,0 +1,31 @@
+<%= form_for @ingredient, url: recipe_ingredients_path do |f| %>
+  <p>
+    <%= f.label :recipe_id %>
+    <%= f.select :recipe_id, Recipe.order(:name).pluck(:name, :id), include_blank: true %>
+      <% if @ingredient.errors.messages[:recipe_id].any? %>
+        <span class="error"><%= @ingredient.errors.messages[:recipe_id][0]%></span>
+      <% end %>
+  </p>
+  <p>
+    <%= f.label :name %>
+    <%= f.text_field :name, placeholder: 'Ingredient name' %>
+      <% if @ingredient.errors.messages[:name].any? %>
+        <span class="error"><%= @ingredient.errors.messages[:name][0]%></span>
+      <% end %>
+  </p>
+  <p>
+    <%= f.label :measurement_qty %>
+    <%= f.text_field :measurement_qty, placeholder: '1' %>
+      <% if @ingredient.errors.messages[:measurement_qty].any? %>
+        <span class="error"><%= @ingredient.errors.messages[:measurement_qty][0]%></span>
+      <% end %>
+  </p>
+  <p>
+    <%= f.label :measurement_unit %>
+    <%= f.text_field :measurement_unit, placeholder: 'cup' %>
+      <% if @ingredient.errors.messages[:measurement_unit].any? %>
+        <span class="error"><%= @ingredient.errors.messages[:measurement_unit][0]%></span>
+      <% end %>
+  </p>
+  <p><%= f.submit%></p>
+<% end %>

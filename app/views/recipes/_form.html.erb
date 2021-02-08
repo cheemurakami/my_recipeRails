@@ -8,10 +8,10 @@
   </p>
   <p>
      <%= f.label :category %>
-    <%= f.text_field :category, placeholder: 'enter category' %>
-      <% if @recipe.errors.messages[:category].any? %>
-        <span class="error"><%= @recipe.errors.messages[:category][0]%></span>
-      <% end %>
+      <%= f.text_field :category, placeholder: 'enter category' %>
+        <% if @recipe.errors.messages[:category].any? %>
+          <span class="error"><%= @recipe.errors.messages[:category][0]%></span>
+        <% end %>
   </p>
   <p><%= f.submit%></p>
 <% end %>
