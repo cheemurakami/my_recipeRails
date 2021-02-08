@@ -1,20 +1,16 @@
 <%= form_for @recipe do |f| %>
   <p>
+    <%= f.label :name %>
     <%= f.text_field :name, placeholder: 'enter name' %>
       <% if @recipe.errors.messages[:name].any? %>
         <span class="error"><%= @recipe.errors.messages[:name][0]%></span>
       <% end %>
   </p>
   <p>
+     <%= f.label :category %>
     <%= f.text_field :category, placeholder: 'enter category' %>
       <% if @recipe.errors.messages[:category].any? %>
         <span class="error"><%= @recipe.errors.messages[:category][0]%></span>
-      <% end %>
-  </p>
-  <p>
-    <%= f.text_field :ingredients, placeholder: 'enter ingredients' %>
-      <% if @recipe.errors.messages[:ingredients].any? %>
-        <span class="error"><%= @recipe.errors.messages[:ingredients][0]%></span>
       <% end %>
   </p>
   <p><%= f.submit%></p>
