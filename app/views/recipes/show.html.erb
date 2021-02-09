@@ -7,8 +7,8 @@
           <li>
             <p>
               <%= ingredient.name %> : <%= ingredient.measurement_qty %> <%= ingredient.measurement_unit %>  
-              <%= link_to '[Edit ingredient]', edit_recipe_ingredient_path(ingredient) %>
-              <%= link_to '[Delete ingredient]', recipe_ingredient_path(@recipe,ingredient), method: :delete, data: { confirm: 'Are you sure?'} %>
+              <%= link_to '[Edit ingredient]', edit_recipe_ingredient_path(@recipe, ingredient) %>
+              <%= link_to '[Delete ingredient]', recipe_ingredient_path(@recipe, ingredient), method: :delete, data: { confirm: 'Are you sure?'} %>
             </p>
           </li>
         <% end%>

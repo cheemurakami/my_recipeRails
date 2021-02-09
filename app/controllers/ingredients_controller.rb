@@ -1,6 +1,7 @@
 class IngredientsController < ApplicationController
 
   def new
+    @recipe = Recipe.find(params[:recipe_id])
     @ingredient = Ingredient.new(recipe_id: params[:recipe_id])
   end
 
@@ -17,7 +18,7 @@ class IngredientsController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:recipe_id])
-    @ingredient = Recipe.find(params[:id])
+    @ingredient = Ingredient.find(params[:id])
     if  @ingredient.update(ingredients_params)
       redirect_to recipes_path(@recipe)
     else
@@ -31,7 +32,7 @@ class IngredientsController < ApplicationController
     @ingredient.destroy
     redirect_to recipe_path(@recipe)
   end
-  
+
   private
     def ingredients_params
       params.require(:ingredient).permit(:name, :measurement_unit, :measurement_qty, :recipe_id)

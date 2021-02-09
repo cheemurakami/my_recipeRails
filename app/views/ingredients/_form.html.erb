@@ -1,4 +1,4 @@
-<%= form_for @ingredient, url: recipe_ingredients_path do |f| %>
+<%= form_for [@recipe, @ingredient] do |f| %>
   <p>
     <%= f.label :recipe_id %>
     <%= f.select :recipe_id, Recipe.order(:name).pluck(:name, :id), include_blank: true %>
