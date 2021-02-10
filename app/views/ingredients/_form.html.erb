@@ -21,11 +21,11 @@
       <% end %>
   </p>
   <p>
-    <%= f.label :measurement_unit %>
-    <%= f.text_field :measurement_unit, placeholder: 'cup' %>
+    <%= f.select :measurement_unit, [["", ""],["cup", "cup"], ["tea spoon", "tea spoon"], ["table spoon", "table spoon"]] %>
       <% if @ingredient.errors.messages[:measurement_unit].any? %>
-        <span class="error"><%= @ingredient.errors.messages[:measurement_unit][0]%></span>
+        <span class="error"><%= @ingredient.errors.messages[:measurement_unit][0] %></span>
       <% end %>
   </p>
+
   <p><%= f.submit%></p>
 <% end %>
