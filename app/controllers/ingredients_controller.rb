@@ -7,8 +7,12 @@ class IngredientsController < ApplicationController
 
   def create
     @recipe = Recipe.find(params[:recipe_id])
-    @recipe.ingredients.create(ingredients_params)
-    redirect_to recipe_path(@recipe)
+    @ingredient = Ingredient.new(ingredients_params)
+    if @ingredient.save
+      redirect_to recipe_path(@recipe), notice: "Ingredient is successfully added!"
+    else
+      render 'new'
+    end
   end
 
   def edit
@@ -20,7 +24,7 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = Ingredient.find(params[:id])
     if  @ingredient.update(ingredients_params)
-      redirect_to recipes_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "Ingredient is successfully updated!"
     else
       render 'edit'
     end
@@ -30,7 +34,7 @@ class IngredientsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @ingredient = @recipe.ingredients.find(params[:id])
     @ingredient.destroy
-    redirect_to recipe_path(@recipe)
+    redirect_to recipe_path(@recipe), notice: "Ingredient is successfully deleted!"
   end
 
   private
