@@ -1,25 +1,32 @@
 <h2>How to make <%= @recipe.name %></h2>
   <h3>Category: <%= @recipe.category %></h3>
-  <% if @recipe.ingredients.any? %>
-    <h3>Ingredients:</h3>
-      <ul>
-        <% @recipe.ingredients.each do |ingredient| %>
-          <li>
-            <p>
-              <%= ingredient.name %> : <%= ingredient.measurement_qty %> <%= ingredient.measurement_unit %>  
-              <%= link_to '[Edit ingredient]', edit_recipe_ingredient_path(@recipe, ingredient) %>
-              <%= link_to '[Delete ingredient]', recipe_ingredient_path(@recipe, ingredient), method: :delete, data: { confirm: 'Are you sure?'} %>
-            </p>
-          </li>
-        <% end%>
-      </ul>
-      <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
-  <% else %>
-   <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
-  <% end%>
-  <% if @recipe.steps.any? %>
-    <p>hello</p>
-  <% else%>
-    <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
-  <% end%>
-  <%= link_to "Home", recipes_path %>
+    <% if @recipe.ingredients.any? %>
+      <h4>Ingredients:</h4>
+        <ul>
+          <% @recipe.ingredients.each do |ingredient| %>
+            <li>
+              <p>
+                <%= ingredient.name %> : <%= ingredient.measurement_qty %> <%= ingredient.measurement_unit %>  
+                <%= link_to '[Edit ingredient]', edit_recipe_ingredient_path(@recipe, ingredient) %>
+                <%= link_to '[Delete ingredient]', recipe_ingredient_path(@recipe, ingredient), method: :delete, data: { confirm: 'Are you sure?'} %>
+              </p>
+            </li>
+          <% end%>
+        </ul>
+        <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
+    <% else %>
+    <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
+    <% end%>
+
+    <% if @recipe.steps.any? %>
+      <h4>Steps:</h4>
+      <% @recipe.steps.order(:index).each do |step| %>
+        <p><%= step.index %>: <%= step.description%>
+      <% end %>
+      <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
+    <% else%>
+      <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
+    <% end%>
+    <div>
+      <%= link_to "Back", recipes_path %>
+    </div>
