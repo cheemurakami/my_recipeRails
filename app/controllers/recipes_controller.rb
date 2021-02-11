@@ -2,8 +2,10 @@ class RecipesController < ApplicationController
   def index
     if (params[:sort] == "atoz")
       @recipes = Recipe.all.order(Arel.sql('lower(name)'))
+      @most_recent_recipes = Recipe.three_most_recent
     else
       @recipes = Recipe.all.order(created_at: 'desc')
+      @most_recent_recipes = Recipe.three_most_recent
     end
   end
 

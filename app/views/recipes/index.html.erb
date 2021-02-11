@@ -4,12 +4,15 @@
   <% @recipes.each do |recipe| %>
     <li>
       <%= recipe.name %>
-      <%= link_to '[Show]', recipe_path(recipe)%>
-      <%= link_to '[Edit]', edit_recipe_path(recipe)%>
-      <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'} %>
+      <% if @most_recent_recipes.include?(recipe) %> 
+        <span class="text-primary">  New!!! </span>
+      <% end %>  
+      <%= link_to '[Show]', recipe_path(recipe) %>
+      <%= link_to '[Edit]', edit_recipe_path(recipe) %>
+      <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'}  %>
     </li>
   <% end%>
 </ul>
 
-<p><%= link_to '[Add a new recipe]', new_recipe_path %></p>
-<p><%= link_to '[Sort by alphabetically]', recipes_path(sort: "atoz") %></p>
+<p><%= link_to '[Add a new recipe]', new_recipe_path  %></p>
+<p><%= link_to '[Sort by alphabetically]', recipes_path(sort: "atoz")  %></p>

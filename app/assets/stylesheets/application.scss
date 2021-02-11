@@ -1,1 +1,29 @@
 @import 'bootstrap';
+
+body {
+  background-image: url("https://www.heart.org/-/media/aha/h4gm/article-images/fruit-and-vegetables.jpg?la=en&hash=65387BD7AEEF9C37F30838E6A897796400EE80F4");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
+}
+.container {
+  margin-top: 40px;
+  background-color: inherit;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a {
+  color: #000;
+}
+
+a:visited {
+  color: #666; }
+
+a:hover {
+  color: #fff;
+  background-color: #000; 
+}
+  
