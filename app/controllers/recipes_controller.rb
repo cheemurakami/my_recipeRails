@@ -1,6 +1,10 @@
 class RecipesController < ApplicationController
   def index
-    @recipes = Recipe.all.order(created_at: 'desc')
+    if (params[:sort] == "atoz")
+      @recipes = Recipe.all.order(Arel.sql('lower(name)'))
+    else
+      @recipes = Recipe.all.order(created_at: 'desc')
+    end
   end
 
   def show
