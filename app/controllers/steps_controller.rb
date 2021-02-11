@@ -29,6 +29,14 @@ class StepsController < ApplicationController
     end
   end
 
+  def destroy
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = Step.find(params[:id])
+    if @step.destroy
+      redirect_to recipe_path(@recipe), notice: "Step is successfully deleted!"
+    end
+  end
+
   private
     def step_params
       params.require(:step).permit(:index, :description, :recipe_id)

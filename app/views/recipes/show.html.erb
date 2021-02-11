@@ -22,7 +22,7 @@
       <h4>Steps:</h4>
       <% @recipe.steps.order(:index).each do |step| %>
         <p>
-          <%= step.index %>: <%= step.description%> <%= link_to '[Edit step]', edit_recipe_step_path(@recipe, step) %>
+          <%= step.index %>: <%= step.description%> <%= link_to '[Edit step]', edit_recipe_step_path(@recipe, step) %> <%= link_to '[Delete step]', recipe_step_path(@recipe, step), method: :delete, data: { confirm: 'Are you sure?'} %>
         </p>
       <% end %>
       <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
