@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   def index
-    if (params[:sort] == "atoz")
+    if(params[:search])
+      @searched_recipes = Recipe.search(params[:search])
+    elsif (params[:sort] == "atoz")
       @recipes = Recipe.all.order(Arel.sql('lower(name)'))
       @most_recent_recipes = Recipe.three_most_recent
     else
@@ -48,5 +50,9 @@ class RecipesController < ApplicationController
   private
     def recipe_params
       params.require(:recipe).permit(:name, :category)
+    end
+    
+    def search_params
+      params.require(:recipe).permit(:name, :category, :search)
     end
 end

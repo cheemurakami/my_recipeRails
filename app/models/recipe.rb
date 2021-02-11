@@ -4,4 +4,8 @@ class Recipe < ApplicationRecord
   validates :name, :category, presence: true
 
   scope :three_most_recent, -> {order(created_at: :desc).limit(3)}
+
+  def self.search(search)
+    Recipe.where("name ILIKE ?", "%#{search}%")
+  end
 end

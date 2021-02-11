@@ -1,18 +1,38 @@
-<h2>Recipes</h2>
+<h4>Search by Recipes</h4>
+  <%= form_with url: recipes_path, method: :get, local: true do  |form| %>
+    <div class="field">
+      <%= form.text_field :search %>
+      <span class="actions">
+        <%= form.submit "Search" %>
+      </span>
+    </div>
+  <% end %>
 
+<h2>Recipes</h2>
 <ul>
-  <% @recipes.each do |recipe| %>
-    <li>
-      <%= recipe.name %>
-      <% if @most_recent_recipes.include?(recipe) %> 
-        <span class="text-primary">  New!!! </span>
-      <% end %>  
-      <%= link_to '[Show]', recipe_path(recipe) %>
-      <%= link_to '[Edit]', edit_recipe_path(recipe) %>
-      <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'}  %>
-    </li>
+  <% if @searched_recipes %>
+    <% @searched_recipes.each do |recipe| %>
+      <li>
+        <%= recipe.name %>
+        <%= link_to '[Show]', recipe_path(recipe) %>
+        <%= link_to '[Edit]', edit_recipe_path(recipe) %>
+        <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'}  %>
+      </li>
+    <% end%>
+  <% else %>
+    <% @recipes.each do |recipe| %>
+      <li>
+        <%= recipe.name %>
+        <% if @most_recent_recipes.include?(recipe) %> 
+          <span class="text-primary">  New!!! </span>
+        <% end %>  
+        <%= link_to '[Show]', recipe_path(recipe) %>
+        <%= link_to '[Edit]', edit_recipe_path(recipe) %>
+        <%= link_to '[Delete]', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?'}  %>
+      </li>
+    <% end%>
   <% end%>
 </ul>
 
 <p><%= link_to '[Add a new recipe]', new_recipe_path  %></p>
-<p><%= link_to '[Sort by alphabetically]', recipes_path(sort: "atoz")  %></p>
+<p><%= link_to '[Sort by alphabetically]', recipes_path(sort: "atoz") %></p>
