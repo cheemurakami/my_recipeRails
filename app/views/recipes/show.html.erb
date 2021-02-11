@@ -17,5 +17,9 @@
   <% else %>
    <p><%= link_to '[Add ingredients]', new_recipe_ingredient_path(@recipe) %></p>
   <% end%>
-
+  <% if @recipe.steps.any? %>
+    <p>hello</p>
+  <% else%>
+    <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
+  <% end%>
   <%= link_to "Home", recipes_path %>

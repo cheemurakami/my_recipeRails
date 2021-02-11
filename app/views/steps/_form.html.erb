@@ -1,0 +1,23 @@
+<%= form_with(model: @step, url: [@recipe, @step], local: true) do |f| %>
+  <p>
+    <%= f.label :recipe_id %>
+    <%= f.select :recipe_id, Recipe.order(:name).pluck(:name, :id), include_blank: true %>
+      <% if @step.errors.messages[:recipe_id].any? %>
+        <span class="error"><%= @step.errors.messages[:recipe_id][0]%></span>
+      <% end %>
+  </p>
+
+  <div class="field">
+    <%= f.label :index %>
+    <%= f.text_field :index %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %> 
