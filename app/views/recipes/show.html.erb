@@ -21,7 +21,9 @@
     <% if @recipe.steps.any? %>
       <h4>Steps:</h4>
       <% @recipe.steps.order(:index).each do |step| %>
-        <p><%= step.index %>: <%= step.description%>
+        <p>
+          <%= step.index %>: <%= step.description%> <%= link_to '[Edit step]', edit_recipe_step_path(@recipe, step) %>
+        </p>
       <% end %>
       <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
     <% else%>

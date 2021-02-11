@@ -14,6 +14,21 @@ class StepsController < ApplicationController
     end
   end
 
+  def edit
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = Step.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:recipe_id])
+    @step = Step.find(params[:id])
+    if @step.update(step_params)
+      redirect_to recipe_path(@recipe), notice: "Step is successfully updated!"
+    else
+      render 'edit'
+    end
+  end
+
   private
     def step_params
       params.require(:step).permit(:index, :description, :recipe_id)
