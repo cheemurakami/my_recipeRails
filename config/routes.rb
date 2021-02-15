@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :recipes do
     resources :ingredients
     resources :steps
+    resources :reviews
   end
   root 'recipes#index'
 end

@@ -1,0 +1,30 @@
+<%= form_with(model: @review, url:[@recipe, @review], local: true) do |f| %>
+  <p>
+    <%= f.label :recipe_id %>
+    <%= f.select :recipe_id, Recipe.order(:name).pluck(:name, :id), include_blank: true %>
+      <% if @review.errors.any? %>
+        <span class="error"><%= @review.errors.full_messages%></span>
+      <% end %>
+  </p>
+
+  <div class="form-check form-check-inline">
+    <%= f.radio_button :star, :class => "form-check-input"%>
+    <%= f.label :star, 1 , class: "form-check-label" %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= f.radio_button :star, 2, :class => "form-check-input"%>
+    <%= f.label :star, 2, class: "form-check-label" %>
+  </div>
+  <div class="form-check form-check-inline">
+    <%= f.radio_button :star, 3, :class => "form-check-input"%>
+    <%= f.label :star, 3, class: "form-check-label" %>
+  </div>
+  <div class="field">
+    <%= f.label :comment %>
+    <%= f.text_area :comment %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %> 
