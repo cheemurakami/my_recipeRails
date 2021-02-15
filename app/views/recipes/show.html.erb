@@ -29,11 +29,25 @@
     <% else%>
       <p><%= link_to '[Add steps]', new_recipe_step_path(@recipe) %></p>
     <% end%>
-    <div>
-      <%= link_to "[Back]", recipes_path %>
-    </div>
-
     
-  <h4>Reviews:</h4>
+  <h4>Reviews (<%= @recipe.reviews.size %>)</h4>
     <p><%= link_to '[Add reviews]', new_recipe_review_path(@recipe) %></p>
+      <% if @recipe.reviews.any? %>
+        <% @recipe.reviews.each do |review| %>
+          <p>
+            <%= review.created_at.to_date %>
+            <% if review.star? %>
+              <% review.star.times do %>
+                <span>⭐</span>
+              <% end %>
+            <% end %>
+          </p>
+          <p><%= review.comment%></p>
+        <% end %>
+    <% end %>
   
+
+
+  <div>
+    <%= link_to "[Back]", recipes_path %>
+  </div>
